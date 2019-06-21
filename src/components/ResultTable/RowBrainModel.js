@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
 import RowModel from './RowModel'
 import _pullAll from 'lodash/pullAll'
 
-class RowBrain extends Component {
+class RowBrainModel {
+  constructor(props) {
+    this.props = props
+  }
 
   state = {
     countedRows: [],
@@ -11,39 +13,47 @@ class RowBrain extends Component {
   }
 
   doYourJob = () => {
-    this.setState({ countedRows: [] }, () => {
-      let currentIteration = 1
-      let countedRows = []
-      let successIteration = 0
-      const doIteration = (_targetList, _variables) => {
-        const { rowData, newVariables } = this.iterateRowGroup(
-          _targetList, 
-          this.makeVariablesNumber(_variables),
-          currentIteration,
-        )
-        countedRows = [
-          ...countedRows,
-          ...rowData,
-        ]
-        if (this.isHasError(rowData) && currentIteration < this.props.maxIteration) {
-          currentIteration++
-          return doIteration(rowData, newVariables, currentIteration)
-        }
-        if (!this.isHasError(rowData)) {
-          successIteration = currentIteration
-        }
-        return currentIteration
-      }
-  
-      const { targetList, variables } = this.props
-      const doneIteration = doIteration(targetList, variables, currentIteration)
+    this.state = {
+      ...this.state,
+      countedRows: []
+    }
+    
+    let currentIteration = 1
+    let countedRows = []
+    let successIteration = 0
 
-      this.setState({ 
-        countedRows,
-        doneIteration,
-        successIteration,
-      })
-    })
+    const doIteration = (_targetList, _variables) => {
+      const { rowData, newVariables } = this.iterateRowGroup(
+        _targetList, 
+        this.makeVariablesNumber(_variables),
+        currentIteration,
+      )
+
+      countedRows = [
+        ...countedRows,
+        ...rowData,
+      ]
+      if (this.isHasError(rowData) && currentIteration < this.props.maxIteration) {
+        currentIteration++
+        return doIteration(rowData, newVariables, currentIteration)
+      }
+      if (!this.isHasError(rowData)) {
+        successIteration = currentIteration
+      }
+      return currentIteration
+    }
+
+    const { targetList, variables } = this.props
+    const doneIteration = doIteration(targetList, variables, currentIteration)
+
+    this.state = {
+      ...this.state,
+      countedRows,
+      doneIteration,
+      successIteration,
+    }
+
+    return this.result()
   }
 
   makeVariablesNumber = (variables) => {
@@ -114,13 +124,14 @@ class RowBrain extends Component {
     }
   }
 
-  render() {
-    return this.props.children({
+  result() {
+    return ({
       allRowData: this.state.countedRows, 
       recount: this.doYourJob,
+      successIteration: this.state.successIteration,
       message: this.state.successIteration === 0 ? "Don't Give Up!" : "Alhamdulillah, You've got it!",
     })
   }
 }
  
-export default RowBrain;
+export default RowBrainModel;

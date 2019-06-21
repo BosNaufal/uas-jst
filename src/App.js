@@ -36,20 +36,20 @@ class App extends Component {
           onChange={this.handleVariableFormChange} 
         />
         <ResultTable 
-          targetList={this.state.targetList}
+          // targetList={this.state.targetList}
           variables={this.state.variables}
 
-          // targetList={[
-          //   { p1: 0, p2: 0, t: 0 },
-          //   { p1: 0, p2: 1, t: 0 },
-          //   { p1: 1, p2: 0, t: 0 },
-          //   { p1: 1, p2: 1, t: 1 },
+          targetList={[
+            // { p1: 0, p2: 0, t: 0 },
+            // { p1: 0, p2: 1, t: 0 },
+            // { p1: 1, p2: 0, t: 0 },
+            // { p1: 1, p2: 1, t: 1 },
 
-          //   // { p1: 0, p2: 0, t: 0, },
-          //   // { p1: 1, p2: 0, t: 1, },
-          //   // { p1: 1, p2: 1, t: 0, },
-          //   // { p1: 0, p2: 1, t: 1, },
-          // ]}
+            { p1: 0, p2: 0, t: 0, },
+            { p1: 0, p2: 1, t: 1, },
+            { p1: 1, p2: 0, t: 1, },
+            { p1: 1, p2: 1, t: 0, },
+          ]}
           // variables={{
           //   w1: 0.3,
           //   w2: 0.1,

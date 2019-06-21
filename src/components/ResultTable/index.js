@@ -2,11 +2,60 @@ import React, { Component } from 'react';
 
 import './table.css'
 import RowBrain from './RowBrain';
+import RowBrainModel from './RowBrainModel';
 import Row from './Row';
+
 
 class ResultTable extends Component {
   state = {
     maxIteration: 15,
+  }
+
+  componentDidMount() {
+    // this.iterateLikeAPro()
+  }
+
+  iterateLikeAPro = () => {
+    const allVariables = this.generateVariable()
+    let success = false
+    allVariables.forEach((variables, index) => {
+      if (success !== false) return false
+      const brain = new RowBrainModel({
+        maxIteration: this.state.maxIteration,
+        targetList: this.props.targetList,
+        variables,
+      })
+      const result = brain.doYourJob()
+      console.log("variasi variable ke - " + index, result)
+      if (result.successIteration !== 0) {
+        success = result
+      }
+    })
+    console.log(success)
+  }
+
+  generateVariable = () => {
+    const range = {
+      weight: [-0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5],
+      bias: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      learningRate: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+    }
+    const allGeneratedVariables = []
+    range.weight.forEach((_w1) => {
+      range.weight.forEach((_w2) => {
+        range.bias.forEach((_b) => {
+          range.learningRate.forEach((_learning_rate) => {
+            allGeneratedVariables.push({
+              w1: _w1,
+              w2: _w2,
+              b: _b,
+              learning_rate: _learning_rate,
+            })
+          })
+        })
+      })
+    })
+    return allGeneratedVariables
   }
 
   makeItNumber = (value) => {
@@ -50,6 +99,12 @@ class ResultTable extends Component {
     }
   }
 
+  handleDone = ({ successIteration }) => {
+    if (successIteration) {
+      console.log("HERE")
+    }
+  }
+
   render() { 
     const { targetList, variables } = this.props
     return (
@@ -57,6 +112,7 @@ class ResultTable extends Component {
         maxIteration={this.state.maxIteration}
         targetList={targetList}
         variables={variables}
+        onDone={this.handleDone}
       >
         {({ allRowData, recount, message }) => (
           <div>
