@@ -26,7 +26,7 @@ class App extends Component {
   render() { 
     return (
       <div className="App">
-        <h1>Simple JST that count :v</h1>
+        <h1>Simple JST that count :v - updated v0.2</h1>
         <LogicGateForm 
           targetList={this.state.targetList}
           onChange={this.handleLogicFormChange} 
@@ -36,20 +36,20 @@ class App extends Component {
           onChange={this.handleVariableFormChange} 
         />
         <ResultTable 
-          // targetList={this.state.targetList}
+          targetList={this.state.targetList}
           variables={this.state.variables}
 
-          targetList={[
+          // targetList={[
             // { p1: 0, p2: 0, t: 0 },
             // { p1: 0, p2: 1, t: 0 },
             // { p1: 1, p2: 0, t: 0 },
             // { p1: 1, p2: 1, t: 1 },
 
-            { p1: 0, p2: 0, t: 0, },
-            { p1: 0, p2: 1, t: 1, },
-            { p1: 1, p2: 0, t: 1, },
-            { p1: 1, p2: 1, t: 0, },
-          ]}
+            // { p1: 0, p2: 0, t: 0, },
+            // { p1: 0, p2: 1, t: 1, },
+            // { p1: 1, p2: 0, t: 1, },
+            // { p1: 1, p2: 1, t: 0, },
+          // ]}
           // variables={{
           //   w1: 0.3,
           //   w2: 0.1,
