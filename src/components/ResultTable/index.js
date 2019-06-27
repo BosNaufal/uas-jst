@@ -4,6 +4,7 @@ import './table.css'
 import RowBrain from './RowBrain';
 import RowBrainModel from './RowBrainModel';
 import Row from './Row';
+import CaraHitung from './CaraHitung';
 
 
 class ResultTable extends Component {
@@ -165,6 +166,8 @@ class ResultTable extends Component {
                 ))}
               </tbody>
             </table>
+
+            <CaraHitung data={allRowData} />
           </div>
         )}
       </RowBrain>
