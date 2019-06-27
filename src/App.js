@@ -38,7 +38,6 @@ class App extends Component {
         <ResultTable 
           targetList={this.state.targetList}
           variables={this.state.variables}
-
           // targetList={[
           //   { p1: 0, p2: 0, t: 0 },
           //   { p1: 0, p2: 1, t: 0 },
