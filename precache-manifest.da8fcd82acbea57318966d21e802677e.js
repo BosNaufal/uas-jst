@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "72a589497d42b0cb4ece43a46158c428",
+    "revision": "6ceaec477b4eeee0d1cf01b74fcecbcb",
     "url": "/uas-jst/index.html"
   },
   {
-    "revision": "ea5747fc46dd6bab3823",
+    "revision": "d6cc607e157e10cbe9f9",
     "url": "/uas-jst/static/css/main.8ebf5459.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uas-jst/static/js/2.d607df9b.chunk.js"
   },
   {
-    "revision": "ea5747fc46dd6bab3823",
-    "url": "/uas-jst/static/js/main.281aa545.chunk.js"
+    "revision": "d6cc607e157e10cbe9f9",
+    "url": "/uas-jst/static/js/main.b87a9cbc.chunk.js"
   },
   {
     "revision": "6f2bf1b388114347a8d1",
